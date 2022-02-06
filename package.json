@@ -7,7 +7,7 @@
     "start": "babel-node server.js",
     "build": "./node_modules/.bin/webpack --mode production",
     "dev-start": "nodemon --exec babel-node server.js --ignore public/",
-    "dev-build": "./node_modules/.bin/webpack -wd",
+    "dev-build": "./node_modules/.bin/webpack -w",
     "eslint": "npx eslint controllers/ models/ react/ test/ config.js router.js server.js",
     "test": "mocha --parallel"
   },
