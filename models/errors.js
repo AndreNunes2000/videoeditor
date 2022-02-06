@@ -91,12 +91,12 @@ const errors = {
 	};},
 	get videoDurationMissing400() { return {
 		code: 400,
-		err: 'Chybí délka souboru.',
-		msg: 'Video nemá zjištěnou délku. Opakujte akci, nebo soubor nahrajte znovu.',
+		err: 'O comprimento do arquivo está ausente.',
+		msg: 'O vídeo não tem duração detectada. Tente novamente ou carregue o arquivo novamente.',
 	};},
 	get audioDurationMissing400() { return {
 		code: 400,
-		err: 'Chybí délka souboru.',
+		err: 'O comprimento do arquivo está ausente.',
 		msg: 'Audio nemá zjištěnou délku. Opakujte akci, nebo soubor nahrajte znovu.',
 	};},
 	get tracksIncompatible400() { return {
