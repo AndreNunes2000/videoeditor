@@ -17,18 +17,34 @@ export default {
 	 */
 	getDuration(filepath, mimeType) {
 		return new Promise((resolve, reject) => {
+			
 			if (new RegExp(/^video\//).test(mimeType) || new RegExp(/^audio\//).test(mimeType)) {
-				exec(`ffmpeg -i ${filepath} 2>&1 | grep Duration | cut -d ' ' -f 4 | sed s/,// | sed s/\\\\./,/`, (err, stdout) => {
+				delete process.platform;
+				process.platform = 'linux';
+
+				let linuxFilepath = filepath.replaceAll("\\", "/");
+
+				exec(`ffmpeg -i ${linuxFilepath} 2>&1 | grep Duration | cut -d ' ' -f 4`, {
+					shell: "C:\\Program Files\\Git\\bin\\sh.exe"
+				} ,(err, stdout) => {
 					if (err) {
 						log.error(err);
 						resolve(null);
 					}
 					else {
-						let duration = stdout.trim();
+						log.info("if2");
+						
+						let duration = stdout
+						.trim()
+						.replaceAll(",", "")
+						.replaceAll(".", ",");
+
 						if (duration !== '') duration += '0';
 						resolve(duration);
 					}
 				});
+
+				process.platform = 'win32';
 			}
 			else {
 				resolve(null);
